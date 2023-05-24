@@ -6,6 +6,9 @@ export const MovieList = () => {
       <section className="max-w-7x1 mx-auto py-7">
         <div className="flex justify-start flex-wrap">
           <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </section>
     </main>
