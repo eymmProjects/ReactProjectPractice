@@ -43,7 +43,7 @@ export const Header = () => {
               Cinemate
             </span>
           </Link>
-
+          {/* mobile */}
           <div id="mobile-nav" className="flex md:order-2">
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -155,7 +155,7 @@ export const Header = () => {
               </svg>
             </button>
           </div>
-
+          {/* website nav */}
           <div
             className={`${
               hidden ? "hidden" : ""
