@@ -1,6 +1,23 @@
+// import express
+// create the router
+// router.post
+// make the function async
+//import the NewsItemModel
+// try catch
+
 const express = require("express");
 const NewsItemModel = require("../models/NewsItem");
 const router = express.Router();
+
+// router.post("/", async function (req, res) {
+//   try {
+//     const newitem = new NewsItemModel(req.body);
+//     await newitem.save();
+//     res.send("News added successfully");
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// });
 
 router.post("/addnewsitem", async function (req, res) {
   try {

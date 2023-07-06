@@ -12,9 +12,10 @@ import EditNews from "./pages/EditNews";
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<LandingPage />} /> */}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/add" element={<AddNews />} />
         </Routes>

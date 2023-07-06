@@ -4,23 +4,44 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Layout from "../components/Layout";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Spinner from "../components/Spinner";
+import { toast } from "react-toastify";
 
 function AddNews() {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-
   useEffect(() => {
     console.log(convertToRaw(editorState.getCurrentContent()));
   }, [editorState]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const save = () => {};
+  const save = async () => {
+    setLoading(true);
+    try {
+      const payload = {
+        title,
+        description,
+        content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+        postedBy: "test user",
+      };
+      await axios.post("/api/newsitems/addnewsitem", payload);
+      setLoading(false);
+      toast("News added successfully", "success");
+    } catch (error) {
+      console.log(error);
+      toast("Something went wrong", "error");
+      setLoading(false);
+    }
+  };
   return (
     <Layout>
+      {loading && <Spinner />}
       <h1 className="text-2xl font-semibold mt-5 ml-5">AddNews</h1>
       <div className="px-5 pt-5">
         <input
@@ -48,7 +69,7 @@ function AddNews() {
         />
       </div>
 
-      <div className="flex-justify-end space-x-5 pr-5 m-5">
+      <div className="flex justify-end space-x-5 pr-5 m-5">
         <button
           className="px-5 py-1 bg-red-700 text0sm text-white"
           onClick={() => navigate("/home")}
